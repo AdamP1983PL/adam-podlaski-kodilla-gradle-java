@@ -1,1 +1,3 @@
 rootProject.name = 'gitHubGradleKodiDemo'
+include 'kodilla-testing'
+
