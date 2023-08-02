@@ -16,17 +16,24 @@ public class ShapeCollector {
     }
 
     public void addFigure(Shape shape){
+        shapes.add(shape);
     }
 
     public void removeFigure(Shape shape){
+        shapes.remove(shape);
     }
 
     public Shape getFigure(int n){
-        return null;
+        return shapes.get(n);
     }
 
-    public int showFigures(){
-        return -1;
+    public String showFigures(){
+        String temp = "";
+        for(Shape shape : shapes){
+            temp +=shape.getShapeName() + "->" + shape.getField() + ",";
+        }
+        System.out.println("Real String toLowerCase(): " + temp.toLowerCase());
+        return temp.toLowerCase();
     }
 
 
