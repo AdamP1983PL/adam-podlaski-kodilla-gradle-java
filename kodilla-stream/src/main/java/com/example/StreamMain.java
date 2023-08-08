@@ -1,6 +1,7 @@
 package com.example;
 
 import com.kodilla.stream.beautifier.PoemBeautifier;
+import com.kodilla.stream.iterate.NumbersGenerator;
 import com.kodilla.stream.lambda.*;
 import com.kodilla.stream.reference.reference.FunctionalCalculator;
 
@@ -15,7 +16,7 @@ public class StreamMain {
         ExpressionExecutor expressionExecutor = new ExpressionExecutor();
 
         System.out.println("Lambda: ");
-        expressionExecutor.executeExpression(10, 5, (a, b) -> a + b);
+        expressionExecutor.executeExpression(10, 5, Double::sum);
         expressionExecutor.executeExpression(10, 5, (a, b) -> a - b);
         expressionExecutor.executeExpression(10, 5, (a, b) -> a * b);
         expressionExecutor.executeExpression(10, 5, (a, b) -> a / b);
@@ -32,6 +33,9 @@ public class StreamMain {
         poemBeautifier.beautify(textToBeautify, String::toLowerCase);
         poemBeautifier.beautify(textToBeautify, s -> "xxx_" + s + "_xxx");
         poemBeautifier.beautify(textToBeautify, s -> s.replaceAll("Ala", "Romek"));
+
+        System.out.println("Using Stream to generate even numbers");
+        NumbersGenerator.generateEven(20);
 
 
     }
