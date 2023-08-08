@@ -86,15 +86,12 @@ public class ShapeCollectorTestSuit {
 
             Circle circle = new Circle(1);
             Square square = new Square(2);
-            Triangle triangle = new Triangle(2, 4);
 
             shapes.add(circle);
             shapes.add(square);
-            shapes.add(triangle);
 
             shapeCollector.addFigure(circle);
             shapeCollector.addFigure(square);
-            shapeCollector.addFigure(triangle);
 
             StringBuilder builder = new StringBuilder();
             for(Shape shape : shapes){

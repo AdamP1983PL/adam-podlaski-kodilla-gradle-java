@@ -1,4 +1,4 @@
-package com.kodilla.testing.forum;
+package forum;
 
 public class ForumPost {
 

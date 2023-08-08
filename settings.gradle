@@ -1,3 +1,4 @@
 rootProject.name = 'gitHubGradleKodiDemo'
 include 'kodilla-testing'
+include 'kodilla-stream'
 
