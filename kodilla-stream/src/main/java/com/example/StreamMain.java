@@ -1,19 +1,11 @@
 package com.example;
 
-import com.kodilla.stream.Book.Book;
-import com.kodilla.stream.Book.BookDirectory;
 import com.kodilla.stream.beautifier.PoemBeautifier;
 import com.kodilla.stream.forumUsers.Forum;
 import com.kodilla.stream.forumUsers.ForumUser;
 import com.kodilla.stream.forumUsers.Sex;
-import com.kodilla.stream.iterate.NumbersGenerator;
-import com.kodilla.stream.lambda.*;
-import com.kodilla.stream.person.People;
-import com.kodilla.stream.reference.reference.FunctionalCalculator;
 
-import java.sql.SQLOutput;
 import java.time.LocalDate;
-import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
