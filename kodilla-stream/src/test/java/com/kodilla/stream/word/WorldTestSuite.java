@@ -52,9 +52,5 @@ public class WorldTestSuite {
 
         //then
         assertEquals(expectedValue, allPeople);
-
-
-
-
     }
 }

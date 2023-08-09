@@ -157,13 +157,23 @@ public class StreamMain {
 //        expressionExecutor.executeExpression(3, 4, FunctionalCalculator::multiplyAByB);
 //        expressionExecutor.executeExpression(3, 4, FunctionalCalculator::divideAByB);
 //
-//        PoemBeautifier poemBeautifier = new PoemBeautifier();
-//        String textToBeautify = "Ala ma kota";
-//        poemBeautifier.beautify(textToBeautify, String::toUpperCase);
-//        poemBeautifier.beautify(textToBeautify, String::toLowerCase);
-//        poemBeautifier.beautify(textToBeautify, s -> "xxx_" + s + "_xxx");
-//        poemBeautifier.beautify(textToBeautify, s -> s.replaceAll("Ala", "Romek"));
-//
+
+        System.out.println("\nxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+        System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx_Zadanie: upiększacz tekstówxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+        System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n");
+
+
+        PoemBeautifier poemBeautifier = new PoemBeautifier();
+        String textToBeautify = "Ala ma kota";
+        poemBeautifier.beautify(textToBeautify, String::toUpperCase);
+        poemBeautifier.beautify(textToBeautify, String::toLowerCase);
+        poemBeautifier.beautify(textToBeautify, s -> "xxx_" + s + "_xxx");
+        poemBeautifier.beautify(textToBeautify, s -> s.replaceAll("Ala", "Romek"));
+
+        System.out.println("\nxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+        System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx_THE_END_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+        System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n");
+
 //        System.out.println("Using Stream to generate even numbers");
 //        NumbersGenerator.generateEven(20);
 
