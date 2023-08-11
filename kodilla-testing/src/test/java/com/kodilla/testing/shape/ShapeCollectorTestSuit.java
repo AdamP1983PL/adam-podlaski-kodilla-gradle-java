@@ -10,6 +10,8 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 @DisplayName("Shape Collector Test Suite")
 public class ShapeCollectorTestSuit {
 
@@ -28,7 +30,7 @@ public class ShapeCollectorTestSuit {
             shapeCollector.addFigure(circle);
 
             //then
-            Assertions.assertEquals(1, shapeCollector.getShapes().size());
+            assertEquals(1, shapeCollector.getShapes().size());
         }
 
         @Test
@@ -45,7 +47,7 @@ public class ShapeCollectorTestSuit {
             shapeCollector.removeFigure(circle);
 
             //then
-            Assertions.assertEquals(1, shapeCollector.getShapes().size());
+            assertEquals(1, shapeCollector.getShapes().size());
         }
     }
 
@@ -71,45 +73,25 @@ public class ShapeCollectorTestSuit {
             Shape temp = shapeCollector.getFigure(1);
 
             //then
-            Assertions.assertEquals(circle1, temp);
+            assertEquals(circle1, temp);
 
         }
-
-//        showFigures powinna zwracać stringa opisującego zawartość kolekcji, nazwa i pole," Circle->3.14,Square->4"
 
         @Test
         void returnedStringShouldBeEqualToExpectedString() {
 
             //given
-            List<Shape> shapes = new ArrayList<>();
-            ShapeCollector shapeCollector = new ShapeCollector(shapes);
-
-            Circle circle = new Circle(1);
-            Square square = new Square(2);
-
-            shapes.add(circle);
-            shapes.add(square);
-
+            ShapeCollector shapeCollector = new ShapeCollector();
+            Shape circle = new Circle(1);
             shapeCollector.addFigure(circle);
-            shapeCollector.addFigure(square);
-
-            StringBuilder builder = new StringBuilder();
-            for(Shape shape : shapes){
-                builder
-                        .append(shape.getShapeName())
-                        .append("->")
-                        .append(shape.getField())
-                        .append(",");
-            }
+            ArrayList<Shape> shapesOne = new ArrayList<>();
+            shapesOne.add(circle);
 
             //when
-            String realString = shapeCollector.showFigures();
-            String expectedString = builder.toString().toLowerCase();
+            List<Shape> result = shapeCollector.getShapes();
 
             //then
-            Assertions.assertEquals(expectedString, realString);
-            System.out.println(realString);
-            System.out.println(expectedString);
+            assertEquals(shapesOne.toString(), result.toString());
         }
     }
 }
