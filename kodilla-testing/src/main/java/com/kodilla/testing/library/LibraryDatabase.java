@@ -15,6 +15,6 @@ public interface LibraryDatabase {
     boolean rentABook(LibraryUser libraryUser, Book book);
 
     // return all books borrowed by libraryUser to the library
-    // returns number of books returned back
+    // returns number of books returned
     int returnBooks(LibraryUser libraryUser);
 }

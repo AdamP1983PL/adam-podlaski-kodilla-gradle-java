@@ -93,10 +93,6 @@ public class BookDirectoryTestSuite {
     }
 
 
-
-
-
-
     /*
     * Zaimplementuj kolejną metodę klasy BookLibrary – listBooksInHandsOf(LibraryUser libraryUser).
     * Zauważ, że metoda o takiej samej nazwie znajduje się w interfejsie LibraryDatabase.
@@ -114,7 +110,7 @@ public class BookDirectoryTestSuite {
     @Test
     void listBooksInHandsOf(LibraryUser libraryUser){
         //given
-        BookLibrary bookLibrary = new BookLibrary(libraryDatabaseMock);
+
         List<Book> resultListOf0Books = new ArrayList<>();
         List<Book> resultListOf1Book = generateListOfNBooks(1);
         List<Book> resultListOf5Books = generateListOfNBooks(5);
@@ -132,7 +128,7 @@ public class BookDirectoryTestSuite {
         when(libraryDatabaseMock.listBooksInHandsOf(libraryUser3)).thenReturn(resultListOf5Books);
 
         //when
-        int libraryUserNumberOfBooks = booksBorrowedByUser.get(libraryUser).size();
+        int libraryUserNumberOfBooks = booksBorrowedByUser.values().size();
         int libraryUser2NumberOfBooks = booksBorrowedByUser.get(libraryUser2).size();
         int libraryUser3NumberOfBooks = booksBorrowedByUser.get(libraryUser3).size();
 
@@ -141,8 +137,4 @@ public class BookDirectoryTestSuite {
         assertEquals(1, libraryUser2NumberOfBooks);
         assertEquals(5, libraryUser3NumberOfBooks);
     }
-
-
-
-
 }
