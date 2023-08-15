@@ -4,33 +4,42 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class FlightTester {
+    Map<String, Boolean> arrivalIsAccessible;
 
-    public Map<String, Boolean> findFlight(Flight flight) throws RouteNotFoundException {
-        Map<String, Boolean> arrivalIsAccessible = new HashMap<>();
+    public FlightTester(){
+        arrivalIsAccessible = new HashMap<>();
         arrivalIsAccessible.put("Katowice", true);
         arrivalIsAccessible.put("Kraków", false);
         arrivalIsAccessible.put("Wrocław", true);
+    }
 
-        if (flight.getArrivalAirport().equals("Katowice") ||
-                flight.getArrivalAirport().equals("Wrocław")) {
-            System.out.println("The Airport " + flight.getArrivalAirport() + " is accessible from this location.");
+    public void findFlight(Flight flight) throws RouteNotFoundException {
+
+        String arrivalAirport = flight.getArrivalAirport();
+        if (arrivalIsAccessible.containsKey(arrivalAirport)){
+            System.out.println("The Airport \"" + arrivalAirport + "\" is accessible from this location.");
         } else {
-            throw new RouteNotFoundException("The Airport " + flight.getArrivalAirport() + " is not accessible from this location ");
+            throw new RouteNotFoundException("The Airport \"" + arrivalAirport + "\" is not accessible from this location ");
         }
-        return arrivalIsAccessible;
     }
 
 
-    public static void main(String[] args) throws RouteNotFoundException {
+    public static void main(String[] args)  {
         FlightTester flightTester = new FlightTester();
-
         Flight toKatowice = new Flight("Warszawa", "Katowice");
-        flightTester.findFlight(toKatowice);
+        Flight toLondyn = new Flight("Warszawa", "Londyn");
 
-        Flight toWroclaw = new Flight("Warszawa", "Wrocław");
-        flightTester.findFlight(toWroclaw);
+        try {
+            flightTester.findFlight(toKatowice);
+        } catch (RouteNotFoundException e) {
+            System.out.println("Arrival Airport not accessible. " + e.getMessage());
+        }
 
-        Flight toKrakow = new Flight("Warszawa", "Kraków");
-        flightTester.findFlight(toKrakow);
+        try {
+            flightTester.findFlight(toLondyn);
+        } catch (RouteNotFoundException e) {
+            System.out.println("Not accessible. " + e.getMessage());
+        }
     }
 }
+
