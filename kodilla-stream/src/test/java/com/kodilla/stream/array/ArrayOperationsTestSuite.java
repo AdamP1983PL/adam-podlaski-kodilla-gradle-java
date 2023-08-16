@@ -10,23 +10,16 @@ public class ArrayOperationsTestSuite {
     @Test
     void testGetAverage(){
         //given
-        int[] arr = {1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 1, 2, 3, 4, 5};
+        int[] arr = {1, 2, 3};
 
         //when
         double average = getAverage(arr);
-        double arrAverageUsingForLoop = averageUsingForLoopMethod(arr);
+        double arrAverageUsingForLoop = 2;
 
         //then
         assertEquals(average, arrAverageUsingForLoop);
     }
 
-    private static double averageUsingForLoopMethod(int[] arr) {
-        double averageUsingForLoop = 0;
-        int count = 0;
-        for (int i = 0; i < arr.length; i++) {
-            averageUsingForLoop += arr[i];
-            count++;
-        }
-        return averageUsingForLoop / count;
-    }
+
+    //zahardkodować wartość oczekiwanią
 }

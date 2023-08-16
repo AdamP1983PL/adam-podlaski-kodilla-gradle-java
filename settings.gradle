@@ -2,4 +2,6 @@ rootProject.name = 'gitHubGradleKodiDemo'
 include 'kodilla-testing'
 include 'kodilla-stream'
 include 'kodilla-exception'
+include ':kodilla-rps'
+include ':kodilla-testing-second-take'
 

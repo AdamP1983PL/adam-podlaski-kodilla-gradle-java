@@ -4,15 +4,11 @@ public class Circle implements Shape{
 
     private String name;
     private double radius;
-    static final double PI = Math.PI;
+    public static final double pi = Math.PI;
 
     public Circle(String name, double radius) {
         this.name = name;
         this.radius = radius;
-    }
-
-    public double getRadius() {
-        return radius;
     }
 
     @Override
@@ -22,11 +18,14 @@ public class Circle implements Shape{
 
     @Override
     public double getField() {
-        return 2 * PI * radius;
+        return pi * radius * radius;
     }
 
     @Override
     public String toString() {
-        return name + ":" + radius;
+        return "Circle{" +
+                "name='" + name + '\'' +
+                ", radius=" + radius +
+                '}';
     }
 }

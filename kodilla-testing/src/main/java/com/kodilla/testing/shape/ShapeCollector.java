@@ -7,11 +7,8 @@ public class ShapeCollector {
 
     private List<Shape> shapes = new ArrayList<>();
 
-    public ShapeCollector() {
-    }
-
     public ShapeCollector(List<Shape> shapes) {
-        this.shapes = new ArrayList<>(shapes);
+        this.shapes = shapes;
     }
 
     public List<Shape> getShapes() {
@@ -33,25 +30,8 @@ public class ShapeCollector {
     public String showFigures(){
         String temp = "";
         for(Shape shape : shapes){
-            temp +=shape.getShapeName() + "->" + shape.getField() + ",";
+            temp +=shape.getShapeName() + ":" + shape.getField() + ",";
         }
-        System.out.println("Real String toLowerCase(): " + temp.toLowerCase());
         return temp.toLowerCase();
-    }
-
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        ShapeCollector that = (ShapeCollector) o;
-
-        return shapes.equals(that.shapes);
-    }
-
-    @Override
-    public int hashCode() {
-        return shapes.hashCode();
     }
 }

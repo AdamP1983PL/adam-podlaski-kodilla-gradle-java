@@ -17,20 +17,21 @@ public class ShapeCollectorTestSuit {
 
     @Nested
     @DisplayName("Adding and removing single element tests.")
-    class OneElementOperationsTests {
+    class SubTests1{
         @Test
         void afterAddingElementTheCollectionSizeShouldIncreaseByOne() {
-
             //given
             List<Shape> shapes = new ArrayList<>();
             ShapeCollector shapeCollector = new ShapeCollector(shapes);
-            Circle circle = new Circle(2);
+            Shape shape1 = new Circle("Circle1", 1.0);
 
             //when
-            shapeCollector.addFigure(circle);
+            shapeCollector.addFigure(shape1);
 
             //then
-            assertEquals(1, shapeCollector.getShapes().size());
+            assertEquals(1, shapes.size());
+            assertEquals(shape1, shapes.get(0));
+            assertEquals("Circle1", shapes.get(0).getShapeName());
         }
 
         @Test
@@ -39,59 +40,59 @@ public class ShapeCollectorTestSuit {
             //given
             List<Shape> shapes = new ArrayList<>();
             ShapeCollector shapeCollector = new ShapeCollector(shapes);
-            Circle circle = new Circle(2);
-            shapeCollector.addFigure(circle);
-            shapeCollector.addFigure(circle);
+            Shape shape = new Circle("Circle", 1.0);
+            shapeCollector.addFigure(shape);
 
             //when
-            shapeCollector.removeFigure(circle);
+            shapeCollector.removeFigure(shape);
+            List<Shape> expectedList = new ArrayList<>();
 
             //then
-            assertEquals(1, shapeCollector.getShapes().size());
+            assertEquals(expectedList, shapes);
+            assertEquals(0, shapes.size());
         }
     }
 
     @Nested
     @DisplayName("Getting one or all elements from the Collection tests.")
-    class GettingElementsFromTheCollectionTests {
-
+    class SubTests2 {
 
         @Test
         void shouldReturnGivenElementFromTheCollection() {
-
             //given
             List<Shape> shapes = new ArrayList<>();
             ShapeCollector shapeCollector = new ShapeCollector(shapes);
-            Circle circle = new Circle(1);
-            Circle circle1 = new Circle(12);
-            Circle circle2 = new Circle(13);
-            shapeCollector.addFigure(circle);
-            shapeCollector.addFigure(circle1);
-            shapeCollector.addFigure(circle2);
+            Shape shape = new Circle("Circle1", 1.0);
+            shapeCollector.addFigure(shape);
+
 
             //when
-            Shape temp = shapeCollector.getFigure(1);
+            Shape temp = shapeCollector.getFigure(0);
+            String tempName = shapes.get(0).getShapeName();
+            String expected = "Circle1";
 
             //then
-            assertEquals(circle1, temp);
+            assertEquals(shape, temp);
+            assertEquals(expected, tempName);
 
         }
 
         @Test
-        void returnedStringShouldBeEqualToExpectedString() {
-
+        void testShowFigure() {
             //given
-            ShapeCollector shapeCollector = new ShapeCollector();
-            Shape circle = new Circle(1);
-            shapeCollector.addFigure(circle);
-            ArrayList<Shape> shapesOne = new ArrayList<>();
-            shapesOne.add(circle);
+            List<Shape> shapes = new ArrayList<>();
+            ShapeCollector shapeCollector = new ShapeCollector(shapes);
+            Shape shape = new Square("Square1", 1.0);
+            Shape shape2 = new Square("Square2", 1.0);
+            shapeCollector.addFigure(shape);
+            shapeCollector.addFigure(shape2);
 
             //when
-            List<Shape> result = shapeCollector.getShapes();
+            String temp = shapeCollector.showFigures();
+            String expected = "square1:1.0,square2:1.0,";
 
             //then
-            assertEquals(shapesOne.toString(), result.toString());
+            assertEquals(expected, temp);
         }
     }
 }

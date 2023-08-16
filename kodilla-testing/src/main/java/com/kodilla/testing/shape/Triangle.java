@@ -2,10 +2,12 @@ package com.kodilla.testing.shape;
 
 public class Triangle implements Shape{
 
+    private String name;
     private int base;
     private int height;
 
-    public Triangle(int base, int height) {
+    public Triangle(String name, int base, int height) {
+        this.name = name;
         this.base = base;
         this.height = height;
     }
@@ -20,7 +22,7 @@ public class Triangle implements Shape{
 
     @Override
     public String getShapeName() {
-        return "Triangle";
+        return name;
     }
 
     @Override
@@ -29,20 +31,7 @@ public class Triangle implements Shape{
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Triangle triangle = (Triangle) o;
-
-        if (base != triangle.base) return false;
-        return height == triangle.height;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = base;
-        result = 31 * result + height;
-        return result;
+    public String toString() {
+        return name + ":" + base + ":" + height;
     }
 }

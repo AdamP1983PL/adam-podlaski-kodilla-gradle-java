@@ -108,33 +108,29 @@ public class BookDirectoryTestSuite {
     * Komunikator nie pozwoli na przesłanie zbyt długich wiadomości).*/
 
     @Test
-    void listBooksInHandsOf(LibraryUser libraryUser){
+    void listBooksInHandsOf(){
         //given
 
         List<Book> resultListOf0Books = new ArrayList<>();
         List<Book> resultListOf1Book = generateListOfNBooks(1);
         List<Book> resultListOf5Books = generateListOfNBooks(5);
-        libraryUser = new LibraryUser("Tomasz", "Kowalski", "83102325786" );
+        LibraryUser libraryUser = new LibraryUser("Tomasz", "Kowalski", "83102325786" );
         LibraryUser libraryUser2 = new LibraryUser("Konrad", "Luczyński", "83102325782" );
         LibraryUser libraryUser3 = new LibraryUser("Damian", "Laskowski", "83102325783" );
-
-        Map<LibraryUser, List<Book>> booksBorrowedByUser = new HashMap<>();
-        booksBorrowedByUser.put(libraryUser, resultListOf0Books);
-        booksBorrowedByUser.put(libraryUser2, resultListOf1Book);
-        booksBorrowedByUser.put(libraryUser3, resultListOf5Books);
 
         when(libraryDatabaseMock.listBooksInHandsOf(libraryUser)).thenReturn(resultListOf0Books);
         when(libraryDatabaseMock.listBooksInHandsOf(libraryUser2)).thenReturn(resultListOf1Book);
         when(libraryDatabaseMock.listBooksInHandsOf(libraryUser3)).thenReturn(resultListOf5Books);
 
         //when
-        int libraryUserNumberOfBooks = booksBorrowedByUser.values().size();
-        int libraryUser2NumberOfBooks = booksBorrowedByUser.get(libraryUser2).size();
-        int libraryUser3NumberOfBooks = booksBorrowedByUser.get(libraryUser3).size();
+        BookLibrary bookLibrary = new BookLibrary(libraryDatabaseMock);
+        List<Book> temp = bookLibrary.getBooksInHandsOf(libraryUser);
+        List<Book> temp1 = bookLibrary.getBooksInHandsOf(libraryUser2);
+        List<Book> temp2 = bookLibrary.getBooksInHandsOf(libraryUser3);
 
         //then
-        assertEquals(0, libraryUserNumberOfBooks);
-        assertEquals(1, libraryUser2NumberOfBooks);
-        assertEquals(5, libraryUser3NumberOfBooks);
+        assertEquals(temp, resultListOf0Books);
+        assertEquals(temp1, resultListOf1Book);
+        assertEquals(temp2, resultListOf5Books);
     }
 }
