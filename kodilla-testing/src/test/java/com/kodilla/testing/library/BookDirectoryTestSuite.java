@@ -93,22 +93,8 @@ public class BookDirectoryTestSuite {
     }
 
 
-    /*
-    * Zaimplementuj kolejną metodę klasy BookLibrary – listBooksInHandsOf(LibraryUser libraryUser).
-    * Zauważ, że metoda o takiej samej nazwie znajduje się w interfejsie LibraryDatabase.
-    * Miej na uwadze, że są to dwie różne metody.
-    * Przetestuj metodę listBooksInHandsOf(LibraryUser libraryUser) z klasy BookLibrary w różnych scenariuszach:
-
-    gdy użytkownik nie ma wypożyczonych żadnych książek,
-    gdy ma wypożyczoną jedną książkę,
-    gdy ma wypożyczonych 5 książek.
-    Zadanie zrealizuj w podejściu TDD.
-    * Przed zaimplementowaniem metody, stworzone testy prześlij do Mentora za pośrednictwem czatu
-    * (aby przesłać długi tekst, umieść go najpierw w pliku tekstowym i prześlij ten plik.
-    * Komunikator nie pozwoli na przesłanie zbyt długich wiadomości).*/
-
     @Test
-    void listBooksInHandsOf(){
+    void testGetBooksInHandsOf(){
         //given
 
         List<Book> resultListOf0Books = new ArrayList<>();
