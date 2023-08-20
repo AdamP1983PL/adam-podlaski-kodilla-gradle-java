@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.time.temporal.ChronoUnit.DAYS;
 import static java.util.stream.Collectors.toList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -143,22 +144,39 @@ class BoardTestSuite {
         assertEquals(2, longTasks);                                       // [9]
     }
 
-//    @Test
-//    void testAddTaskListAverageWorkingOnTask(){
-//        //Given
-//        Board project = prepareTestData();
-//
-//        //when
-//        List<TaskList> inProgressTasks = new ArrayList<>();
-//        inProgressTasks.add(new TaskList("In progress"));
-//        long averageNumDays = project.getTaskLists().stream()
-//                .filter(inProgressTasks::contains)
-//                .
-//
-//
-//        //then
-//
-//    }
+    @Test
+    void testAddTaskListAverageWorkingOnTask() {
+        //given
+        Board project = prepareTestData();
+
+        //when
+        List<TaskList> inProgressTask = new ArrayList<>();
+        inProgressTask.add(new TaskList("In progress"));
+
+        long expectedNumberOfTasks = 3;
+        long inProgressTasksCount = project.getTaskLists().stream()
+                .filter(z -> inProgressTask.contains(z))
+                .flatMap(tl -> tl.getTasks().stream())
+                .count();
+
+
+        long expectedSumOfDays = 30;
+        long sumOfDays = project.getTaskLists().stream()
+                .filter(inProgressTask::contains)
+                .flatMap(tasks -> tasks.getTasks().stream())
+                .mapToLong(task -> Math.abs(DAYS.between(LocalDate.now(), task.getCreated())))
+                .sum();
+
+        double average = (double)sumOfDays/inProgressTasksCount;
+        System.out.println("Average: " + average);
+        double expectedAverage = (double)expectedSumOfDays/expectedNumberOfTasks;
+        System.out.println("Expected average: " + expectedAverage);
+
+        //then
+        assertEquals(expectedNumberOfTasks, inProgressTasksCount);
+        assertEquals(expectedSumOfDays, sumOfDays);
+        assertEquals(expectedAverage, average);
+    }
 }
 
 
