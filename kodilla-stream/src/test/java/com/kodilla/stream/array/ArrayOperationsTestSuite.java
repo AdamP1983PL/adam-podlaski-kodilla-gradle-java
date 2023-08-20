@@ -2,7 +2,6 @@ package com.kodilla.stream.array;
 
 import org.junit.jupiter.api.Test;
 
-import static com.kodilla.stream.array.ArrayOperations.getAverage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ArrayOperationsTestSuite {
@@ -13,13 +12,10 @@ public class ArrayOperationsTestSuite {
         int[] arr = {1, 2, 3};
 
         //when
-        double average = getAverage(arr);
-        double arrAverageUsingForLoop = 2;
+        double expected = 2;
+        double average = ArrayOperations.getAverage(arr);
 
         //then
-        assertEquals(average, arrAverageUsingForLoop);
+        assertEquals(expected, average);
     }
-
-
-    //zahardkodować wartość oczekiwanią
 }
