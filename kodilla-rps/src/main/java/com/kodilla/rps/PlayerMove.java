@@ -30,7 +30,6 @@ public class PlayerMove {
                 System.out.println("Player move: " + playerMove);
                 break;
             case "x":
-//                boolean flag = false;
                 while (true) {
                     System.out.println("End this Game Now?");
                     System.out.println("Type \"Y\" for Yes, \"N\" for No");
@@ -38,7 +37,6 @@ public class PlayerMove {
                     if (decision.equalsIgnoreCase("Y")) {
                         System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx_END_GAME_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
                         run.setEndGame(true);
-//                        flag = true;
                         System.exit(0);
                     } else if (decision.equalsIgnoreCase("N")) {
                         System.out.println("Lets continue current Game...");
@@ -49,7 +47,6 @@ public class PlayerMove {
                 }
                 break;
             case "n":
-//                boolean flagOne = false;
                 while (true) {
                     System.out.println("Restart Game Now?");
                     System.out.println("Type \"Y\" for Yes, \"N\" for No");
@@ -60,10 +57,8 @@ public class PlayerMove {
                         System.out.println("Restarting game!!!");
                         System.out.println("Player score: " + player.getPlayerScore());
                         System.out.println("Computer score " + computer.getComputerScore());
-//                        flagOne = true;
+
                         return Moves.RESET;
-//                        break;
-//                        return Moves.EXIT;
                     } else if (decision.equalsIgnoreCase("n")) {
                         System.out.println("Lets continue current Game...");
                         break;
