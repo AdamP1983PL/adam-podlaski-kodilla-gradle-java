@@ -1,7 +1,11 @@
 package com.kodilla.rps;
 
-public enum Moves {
+public class Moves {
 
-    ROCK, PAPER, SCISSORS
+    public static final String ROCK = "Rock";
+    public static final String PAPER = "Paper";
+    public static final String SCISSORS = "Scissors";
+    public static final String EXIT = "Exit";
+    public static final String RESET = "Reset";
 
 }

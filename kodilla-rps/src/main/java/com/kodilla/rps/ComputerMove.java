@@ -4,12 +4,6 @@ import java.util.Random;
 
 public class ComputerMove {
 
-//    private String computerMove;
-//
-//    public void setComputerMove(String computerMove) {
-//        this.computerMove = computerMove;
-//    }
-
     public String getComputerMove(){
         Random random = new Random();
         String computerMove = "";

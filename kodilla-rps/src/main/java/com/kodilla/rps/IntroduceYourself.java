@@ -3,9 +3,9 @@ package com.kodilla.rps;
 import java.util.Scanner;
 
 public class IntroduceYourself {
+    Player player = new Player();
 
-    public static void introduceYourself() {
-
+    public static Player introduceYourself() {
         Scanner scanner = new Scanner(System.in);
         Player player = new Player();
         boolean flag = false;
@@ -21,5 +21,6 @@ public class IntroduceYourself {
                 flag = true;
             }
         }
+        return player;
     }
 }

@@ -20,7 +20,7 @@ public class Run {
         TargetWinsToWin targetWinsToWin = new TargetWinsToWin();
         Rules rules = new Rules();
         Result result = new Result();
-        Winner winner = new Winner();
+        CheckWinningConditions checkWinningConditions = new CheckWinningConditions();
 
         rules.showRules();
 
@@ -31,13 +31,18 @@ public class Run {
         while(!endGame) {
             rules.showMoves();
 
-            String playerCurrentMove = playerMove.getPlayerMove();
+            String playerCurrentMove = playerMove.getPlayerMove(player, computer);
 
+            if(playerCurrentMove.equals(Moves.EXIT)) break;
+
+            if(playerCurrentMove.equals(Moves.RESET)){
+                continue;
+            }
             String computerCurrentMove = computerMove.getComputerMove();
 
             result.checkResult(player, computer, playerCurrentMove, computerCurrentMove, score);
 
-            winner.determineTheWinner(player, computer);
+            checkWinningConditions.determineTheWinner(player, computer, targetWinsToWin);
 
             System.out.println("\n-------------------------------------------------------------------------------------------\n");
         }

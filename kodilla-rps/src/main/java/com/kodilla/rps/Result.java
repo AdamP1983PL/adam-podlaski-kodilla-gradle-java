@@ -2,44 +2,21 @@ package com.kodilla.rps;
 
 public class Result {
 
-    public void checkResult(Player player, Computer computer, String playerCurrentMove, String computerCurrentMove, Score score){
-
-        if (playerCurrentMove.equals(computerCurrentMove)){
-            System.out.println("It is a Tie!!!");
+    public void checkResult(Player player, Computer computer, String playerCurrentMove, String computerCurrentMove, Score score) {
+        if (playerCurrentMove.equals(computerCurrentMove)) {
+            System.out.println("It's a Tie!!!");
             score.incrementTargetWinsToWinTheGame();
-            score.gameScore(player, computer);
+        } else if (
+                (playerCurrentMove.equals(Moves.ROCK) && computerCurrentMove.equals(Moves.PAPER)) ||
+                        (playerCurrentMove.equals(Moves.PAPER) && computerCurrentMove.equals(Moves.SCISSORS)) ||
+                        (playerCurrentMove.equals(Moves.SCISSORS) && computerCurrentMove.equals(Moves.ROCK))
+        ) {
+            score.computerWonRound(computer);
+            score.incrementTargetWinsToWinTheGame();
+        } else {
+            score.playerWonRound(player);
+            score.incrementTargetWinsToWinTheGame();
         }
-
-        if (playerCurrentMove.equals("Rock")){
-            if (computerCurrentMove.equals("Paper")){
-                score.incrementTargetWinsToWinTheGame();
-                score.computerWonRound(computer);
-                score.gameScore(player, computer);
-            } else if (computerCurrentMove.equals("Scissors")){
-                score.incrementTargetWinsToWinTheGame();
-                score.playerWonRound(player);
-                score.gameScore(player, computer);
-            }
-        } else if (playerCurrentMove.equals("Paper")){
-            if (computerCurrentMove.equals("Rock")){
-                score.incrementTargetWinsToWinTheGame();
-                score.playerWonRound(player);
-                score.gameScore(player, computer);
-            } else if (computerCurrentMove.equals("Scissors")){
-                score.incrementTargetWinsToWinTheGame();
-                score.computerWonRound(computer);
-                score.gameScore(player, computer);
-            }
-        } else if (playerCurrentMove.equals("Scissors")){
-            if(computerCurrentMove.equals("Rock")){
-                score.incrementTargetWinsToWinTheGame();
-                score.computerWonRound(computer);
-                score.gameScore(player, computer);
-            } else if (computerCurrentMove.equals("Paper")){
-                score.incrementTargetWinsToWinTheGame();
-                score.playerWonRound(player);
-                score.gameScore(player, computer);
-            }
-        }
+        score.gameScore(player, computer);
     }
 }
