@@ -23,13 +23,15 @@ public class ProductRepositoryImpl implements ProductsRepository {
     Product product2a = new Product(1, "healthyShop2", 1000, new BigDecimal("16.0"), false);
     Product product3a = new Product(2, "healthyShop3", 1000, new BigDecimal("31.0"), true);
     Product product4a = new Product(3, "healthyShop4", 0, new BigDecimal("64.0"), false);
-    FoodProducer healthyShop = new FoodProducer("Healthy Shop");
+    FoodProducer healthyShop = new FoodProducer("Healthy Shop",
+            new ArrayList<>(List.of(product1a, product2a, product3a, product4a)));
 
     Product product1b = new Product(0, "glutenFree1", 0, new BigDecimal("3"), false);
     Product product2b = new Product(1, "glutenFree2", 10000, new BigDecimal("6"), true);
     Product product3b = new Product(2, "glutenFree3", 10, new BigDecimal("9"), true);
     Product product4b = new Product(3, "glutenFree4", 0, new BigDecimal("18"), false);
-    FoodProducer glutenFreeSHop = new FoodProducer("Gluten Free Shop");
+    FoodProducer glutenFreeSHop = new FoodProducer("Gluten Free Shop",
+            new ArrayList<>(List.of(product1b, product2b, product3b, product4b)));
 
 
     @Override
@@ -46,5 +48,10 @@ public class ProductRepositoryImpl implements ProductsRepository {
                 System.out.println("Product: " + product);
             });
         });
+    }
+
+    @Override
+    public Product getProduct(FoodProducer foodProducer) {
+        return foodProducer.getProducts().get(0);
     }
 }

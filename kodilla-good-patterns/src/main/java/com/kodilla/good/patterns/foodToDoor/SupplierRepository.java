@@ -12,4 +12,6 @@ public interface SupplierRepository {
     List<Product> showSupplierProductsList(FoodProducer foodProducer);
 
     void addSupplier(List<FoodProducer> foodProducerList);
+
+    public Product getProductFromSupplier();
 }

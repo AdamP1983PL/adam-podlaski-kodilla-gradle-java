@@ -7,6 +7,8 @@ import java.util.List;
 
 public class SupplierRepositoryImpl implements SupplierRepository {
 
+    ProductRepositoryImpl productRepository;
+
     @Override
     public void showDetails(FoodProducer foodProducer) {
         System.out.println("Company name: " + foodProducer.getCompanyName());
@@ -22,4 +24,11 @@ public class SupplierRepositoryImpl implements SupplierRepository {
     public List<Product> showSupplierProductsList(FoodProducer foodProducer) {
         return foodProducer.getProducts().stream().toList();
     }
+
+    @Override
+    public Product getProductFromSupplier() {
+        return null;
+    }
+
+
 }
