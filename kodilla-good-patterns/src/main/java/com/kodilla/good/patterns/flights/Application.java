@@ -1,5 +1,12 @@
 package com.kodilla.good.patterns.flights;
 
+import com.kodilla.good.patterns.flights.dto.CityDto;
+import com.kodilla.good.patterns.flights.mapper.CityMapper;
+import com.kodilla.good.patterns.flights.pojo.City;
+import com.kodilla.good.patterns.flights.pojo.Flight;
+import com.kodilla.good.patterns.flights.repository.FlightRepository;
+import com.kodilla.good.patterns.flights.service.FlightServiceImpl;
+
 public class Application {
     public static void main(String[] args) {
 

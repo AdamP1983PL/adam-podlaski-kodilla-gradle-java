@@ -1,4 +1,4 @@
-package com.kodilla.good.patterns.foodToDoor;
+package com.kodilla.good.patterns.foodToDoor.repository;
 
 import com.kodilla.good.patterns.foodToDoor.pojo.FoodProducer;
 import com.kodilla.good.patterns.foodToDoor.pojo.Product;
@@ -15,7 +15,7 @@ public class ProductRepositoryImpl implements ProductsRepository {
     Product product2 = new Product(1, "extraFood2", 100, new BigDecimal("40.0"), true);
     Product product3 = new Product(2, "extraFood3", 150, new BigDecimal("80.0"), true);
     Product product4 = new Product(3, "extraFood4", 200, new BigDecimal("160.0"), true);
-    FoodProducer extraShopFood = new FoodProducer("Extra Shop Food",
+    public FoodProducer extraShopFood = new FoodProducer("Extra Shop Food",
             new ArrayList<>(List.of(product1, product2, product3, product4)));
 
 

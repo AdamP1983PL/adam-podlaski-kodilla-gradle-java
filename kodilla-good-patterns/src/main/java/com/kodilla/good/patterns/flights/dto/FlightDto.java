@@ -1,4 +1,6 @@
-package com.kodilla.good.patterns.flights;
+package com.kodilla.good.patterns.flights.dto;
+
+import com.kodilla.good.patterns.flights.pojo.City;
 
 import java.util.Objects;
 

@@ -1,4 +1,7 @@
-package com.kodilla.good.patterns.flights;
+package com.kodilla.good.patterns.flights.service;
+
+import com.kodilla.good.patterns.flights.pojo.City;
+import com.kodilla.good.patterns.flights.pojo.Flight;
 
 import java.util.List;
 

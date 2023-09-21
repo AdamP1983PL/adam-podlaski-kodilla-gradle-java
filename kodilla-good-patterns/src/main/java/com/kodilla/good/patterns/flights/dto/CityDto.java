@@ -1,4 +1,4 @@
-package com.kodilla.good.patterns.flights;
+package com.kodilla.good.patterns.flights.dto;
 
 import java.util.Objects;
 

@@ -1,6 +1,7 @@
-package com.kodilla.good.patterns.foodToDoor.pojo;
+package com.kodilla.good.patterns.foodToDoor;
 
 import com.kodilla.good.patterns.foodToDoor.dto.ProductDto;
+import com.kodilla.good.patterns.foodToDoor.pojo.Quantity;
 
 import java.util.HashMap;
 import java.util.Map;

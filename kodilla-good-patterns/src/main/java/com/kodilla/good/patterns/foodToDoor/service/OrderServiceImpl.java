@@ -1,6 +1,6 @@
-package com.kodilla.good.patterns.foodToDoor;
+package com.kodilla.good.patterns.foodToDoor.service;
 
-import com.kodilla.good.patterns.foodToDoor.pojo.Basket;
+import com.kodilla.good.patterns.foodToDoor.Basket;
 import com.kodilla.good.patterns.foodToDoor.pojo.DeliveryPlace;
 import com.kodilla.good.patterns.foodToDoor.pojo.FoodProducer;
 
