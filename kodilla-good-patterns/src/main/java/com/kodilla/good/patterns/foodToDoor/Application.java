@@ -32,7 +32,7 @@ public class Application {
         OrderServiceImpl orderService = new OrderServiceImpl();
         orderService.process(extraShopFood, basket, deliveryPlace);
 
-        System.out.println("\n" + "x".repeat(60));
+        System.out.println("\n" + "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
 
         orderService.process(new FoodProducer("New Food Producer...",
                 new ArrayList<>(List.of(
