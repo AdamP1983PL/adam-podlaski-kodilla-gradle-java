@@ -7,4 +7,5 @@ include ':kodilla-testing-second-take'
 include 'kodilla-good-patterns'
 include 'kodilla-good-patterns'
 include 'kodilla-spring-intro'
+include 'kodila-spring-intro'
 
