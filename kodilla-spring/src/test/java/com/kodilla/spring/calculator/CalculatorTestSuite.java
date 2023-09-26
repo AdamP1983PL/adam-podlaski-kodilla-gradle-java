@@ -9,23 +9,23 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @SpringBootTest
 class CalculatorTestSuite {
 
-//    @Autowired
-//    Calculator calculator;
-//
-//    @Test
-//    void testCalculations() {
-//        // given
-//
-//        // when
-//        double addResult = calculator.add(5.0, 5.0);
-//        double subResult = calculator.sub(5.0, 5.0);
-//        double mulResult = calculator.mul(5.0, 5.0);
-//        double divResult = calculator.div(5.0, 5.0);
-//
-//        // then
-//        assertEquals(10.0, addResult);
-//        assertEquals(0, subResult);
-//        assertEquals(25.0, mulResult);
-//        assertEquals(1.0, divResult);
-//    }
+    @Autowired
+    Calculator calculator;
+
+    @Test
+    void testCalculations() {
+        // given
+
+        // when
+        double addResult = calculator.add(5.0, 5.0);
+        double subResult = calculator.sub(5.0, 5.0);
+        double mulResult = calculator.mul(5.0, 5.0);
+        double divResult = calculator.div(5.0, 5.0);
+
+        // then
+        assertEquals(10.0, addResult);
+        assertEquals(0, subResult);
+        assertEquals(25.0, mulResult);
+        assertEquals(1.0, divResult);
+    }
 }
