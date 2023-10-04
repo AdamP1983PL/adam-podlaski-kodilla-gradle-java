@@ -83,7 +83,6 @@ public class ShapeCollectorTestSuite {
             shapeCollector.addFigure(shape1);
             shapeCollector.addFigure(shape2);
 
-
             //when
             String expectedShapeName = "Circle";
             String realShapeName = shapeCollector.getFigure(1).getShapeName();
