@@ -1,7 +1,5 @@
-package com.kodilla.patterns.prototype.libraty;
+package com.kodilla.patterns.prototype.library;
 
-import com.kodilla.patterns.prototype.library.Book;
-import com.kodilla.patterns.prototype.library.Library;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
