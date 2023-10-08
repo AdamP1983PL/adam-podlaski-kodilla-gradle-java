@@ -1,4 +1,4 @@
-package com.kodilla.strategy_revision;
+package com.kodilla.patterns.strategy_revision;
 
 public final class AggressivePredictorOne implements BuyPredictorOne {
     @Override

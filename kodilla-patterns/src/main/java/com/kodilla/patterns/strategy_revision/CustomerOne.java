@@ -1,4 +1,4 @@
-package com.kodilla.strategy_revision;
+package com.kodilla.patterns.strategy_revision;
 
 public sealed class CustomerOne permits CorporateCustomerOne, IndividualCustomerOne, IndividualYoungCustomerOne {
 
