@@ -1,6 +1,5 @@
 package com.kodilla.patterns.strategy_revision;
 
-import com.kodilla.strategy_revision.*;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
