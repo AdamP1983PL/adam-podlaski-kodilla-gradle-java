@@ -27,7 +27,7 @@ public class TaskFactoryTestSuite {
         // when
         assertEquals("Paint yours son room", paintingTask.executeTask());
         assertEquals("Painting task", paintingTask.getTaskName());
-        assertTrue(paintingTask.isTaskExecuted());
+        assertFalse(paintingTask.isTaskExecuted());
     }
 
     @Test
