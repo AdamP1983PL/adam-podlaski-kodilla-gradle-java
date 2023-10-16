@@ -1,7 +1,6 @@
 package com.kodilla.patterns.builder.checkers;
 
 public class Checkers {
-
     private final Board board;
     private final String playerOne;
     private final String playerTwo;
@@ -25,7 +24,6 @@ public class Checkers {
     }
 
     public static class CheckersBuilder {                                // [6]
-
         private Board board = new Board();                                // [7]
         private String playerOne = "";                                    // [8]
         private String playerTwo = "";                                    // [9]
