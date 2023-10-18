@@ -1,25 +1,34 @@
 package com.kodilla;
 
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@Getter
+@Setter
+@EqualsAndHashCode
 public class SudokuRow {
+    private List<SudokuElement> sudokuElements = new ArrayList<>();
 
-    public static List<Integer> rows(SudokuElement sudokuElement) {
-        List<Integer> rows = new ArrayList<>();
-
-//        for (int i = 0; i < SudokuGame.BOARD_SIZE; i++) {
-//            rows.add(sudokuElement.value);
-//        }
-
+    public SudokuRow() {
         for (int i = 0; i < SudokuGame.BOARD_SIZE; i++) {
-            rows.add(i);
+            sudokuElements.add(new SudokuElement());
         }
-
-        return rows;
     }
 
-    public static void printSudokuRow(SudokuRow sudokuRow){
-        System.out.println(sudokuRow);
+    @Override
+    public String toString() {
+        String rowString = "|";
+        for (int i = 0; i < SudokuGame.BOARD_SIZE; i++) {
+            if ((i + 1) % 3 == 0) {
+                rowString += sudokuElements.get(i).toString() + " | ";
+            } else {
+                rowString += sudokuElements.get(i).toString() + "  ";
+            }
+        }
+        return rowString;
     }
 }
