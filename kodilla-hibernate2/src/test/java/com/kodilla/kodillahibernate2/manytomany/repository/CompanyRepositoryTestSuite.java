@@ -60,13 +60,13 @@ class CompanyRepositoryTestSuite {
             companyRepository.deleteById(softwareMachineId);
             companyRepository.deleteById(dataMasterId);
             companyRepository.deleteById(greyMatterId);
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
 
     @Test
-    void testNamedQueries(){
+    void testNamedQueries() {
         // given
         Employee james = new Employee("James", "Gosling");
         Employee sara = new Employee("Sara", "Gosling");
@@ -80,18 +80,13 @@ class CompanyRepositoryTestSuite {
 
         Company sunMicrosystems = new Company("Sun...");
         Company microsoft = new Company("Microsoft");
+        Company microchip = new Company("Microchip");
         companyRepository.save(sunMicrosystems);
         int sunMicrosystemsId = sunMicrosystems.getId();
         companyRepository.save(microsoft);
         int microsoftId = microsoft.getId();
-
-        sunMicrosystems.getEmployees().add(james);
-        sunMicrosystems.getEmployees().add(sara);
-        microsoft.getEmployees().add(bill);
-
-        james.getCompanies().add(sunMicrosystems);
-        sara.getCompanies().add(sunMicrosystems);
-        bill.getCompanies().add(microsoft);
+        companyRepository.save(microchip);
+        int microchipId = microchip.getId();
 
         // when
         List<Employee> goslingsFamily = employeeRepository.retrieveEmployeesWithGivenLastName("Gosling");
@@ -104,8 +99,8 @@ class CompanyRepositoryTestSuite {
             assertEquals(2, goslingsFamily.size());
             assertEquals(1, gatesFamily.size());
             assertEquals(1, companiesNamesStartingFromSun.size());
-            assertEquals(1, companiesNamesStartingFromMic.size());
-        } catch (Exception e){
+            assertEquals(2, companiesNamesStartingFromMic.size());
+        } catch (Exception e) {
 
         } finally {
             // cleanUp
@@ -114,6 +109,7 @@ class CompanyRepositoryTestSuite {
             employeeRepository.deleteById(billId);
             companyRepository.deleteById(sunMicrosystemsId);
             companyRepository.deleteById(microsoftId);
+            companyRepository.deleteById(microchipId);
         }
     }
 }
