@@ -4,6 +4,12 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+
+@NamedQuery(
+        name = "Company.retrieveCompaniesStartingFrom",
+        query = "FROM Company WHERE name LIKE : STRINGPARAM"
+)
 
 @Entity
 @Table(name = "COMPANIES")
@@ -51,5 +57,25 @@ public class Company {
 
     public void setEmployees(List<Employee> employees) {
         this.employees = employees;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Company company = (Company) o;
+
+        if (id != company.id) return false;
+        if (!Objects.equals(name, company.name)) return false;
+        return Objects.equals(employees, company.employees);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (employees != null ? employees.hashCode() : 0);
+        return result;
     }
 }

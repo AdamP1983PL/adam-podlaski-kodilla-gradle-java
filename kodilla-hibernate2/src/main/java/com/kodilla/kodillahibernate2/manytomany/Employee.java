@@ -4,6 +4,12 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+
+@NamedQuery(
+        name = "Employee.retrieveEmployeesWithGivenLastName",
+        query = "FROM Employee WHERE lastName = :LASTNAME"
+)
 
 @Entity
 @Table(name = "EMPLOYEES")
@@ -70,5 +76,27 @@ public class Employee {
 
     public void setCompanies(List<Company> companies) {
         this.companies = companies;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Employee employee = (Employee) o;
+
+        if (id != employee.id) return false;
+        if (!Objects.equals(firstName, employee.firstName)) return false;
+        if (!Objects.equals(lastName, employee.lastName)) return false;
+        return Objects.equals(companies, employee.companies);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
+        result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
+        result = 31 * result + (companies != null ? companies.hashCode() : 0);
+        return result;
     }
 }
