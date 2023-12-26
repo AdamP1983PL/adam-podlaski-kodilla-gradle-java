@@ -112,4 +112,30 @@ class CompanyRepositoryTestSuite {
             companyRepository.deleteById(microchipId);
         }
     }
+
+    @Test
+    void testFindCompanyNameWithGivenSnippet() {
+        // given
+        Company company1 = new Company("Microsoft");
+        Company company2 = new Company("New-microworld");
+        Company company3 = new Company("Micro-Mechanics");
+        companyRepository.save(company1);
+        companyRepository.save(company2);
+        companyRepository.save(company3);
+
+        // when
+        List<Company> companiesWithNameContainingMicSnippet = companyRepository.retrieveCompaniesLike("%Mic%");
+        List<Company> companiesWithNameContainingXyzSnippet = companyRepository.retrieveCompaniesLike("%Xyz%");
+
+        // then
+        try {
+            assertEquals(3, companiesWithNameContainingMicSnippet.size());
+            assertEquals(0, companiesWithNameContainingXyzSnippet.size());
+        } catch (Exception e) {
+            throw new RuntimeException("Something went wrong");
+        } finally {
+            companyRepository.deleteAll();
+        }
+    }
+
 }

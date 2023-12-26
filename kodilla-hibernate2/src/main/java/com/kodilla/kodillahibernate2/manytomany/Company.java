@@ -8,7 +8,11 @@ import java.util.Objects;
 
 @NamedQuery(
         name = "Company.retrieveCompaniesStartingFrom",
-        query = "FROM Company WHERE name LIKE : STRINGPARAM"
+        query = "FROM Company WHERE name LIKE :STRINGPARAM"
+)
+@NamedQuery(
+        name = "Company.retrieveCompaniesLike",
+        query = "FROM Company WHERE name LIKE :NAME_SNIPPET"
 )
 
 @Entity

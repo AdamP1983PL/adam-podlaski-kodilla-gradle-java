@@ -13,4 +13,8 @@ import java.util.List;
 public interface CompanyRepository extends CrudRepository<Company, Integer> {
 
     List<Company> retrieveCompaniesStartingFrom(@Param("STRINGPARAM") String stringParam);
+
+    List<Company> retrieveCompaniesLike(@Param("NAME_SNIPPET") String nameSnippet);
+
+
 }
