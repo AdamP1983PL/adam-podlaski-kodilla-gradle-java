@@ -25,8 +25,7 @@ public class CompanyFinderFacade {
         List<Company> companiesWithGivenNameSnippet;
         List<Company> companies = (List<Company>) companyRepository.findAll();
         boolean wasError = false;
-        long companiesListSize = companies.size();
-        if (companiesListSize < 1) {
+        if (companies.size() < 1) {
             LOGGER.error(CompanyQueryProcessingException.ERR_EMPTY_DATABASE);
             wasError = true;
             throw new CompanyQueryProcessingException (CompanyQueryProcessingException.ERR_EMPTY_DATABASE);

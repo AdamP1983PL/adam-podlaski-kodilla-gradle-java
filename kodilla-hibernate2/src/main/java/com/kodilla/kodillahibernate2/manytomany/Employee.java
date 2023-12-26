@@ -8,8 +8,10 @@ import java.util.Objects;
 
 @NamedQuery(
         name = "Employee.retrieveEmployeesWithGivenLastName",
-        query = "FROM Employee WHERE lastName = :LASTNAME"
-)
+        query = "FROM Employee WHERE lastName LIKE :LASTNAME")
+@NamedQuery(
+        name = "Employee.retrieveEmployeesLike",
+        query = "FROM Employee WHERE lastName LIKE :NAME_SNIPPET OR firstName LIKE :NAME_SNIPPET")
 
 @Entity
 @Table(name = "EMPLOYEES")

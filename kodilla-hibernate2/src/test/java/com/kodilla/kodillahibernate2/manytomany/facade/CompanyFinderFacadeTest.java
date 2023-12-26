@@ -16,16 +16,16 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 @SpringBootTest
 class CompanyFinderFacadeTest {
 
-    @AfterEach
-    public void cleanUp() {
-        companyRepository.deleteAll();
-    }
-
     @Autowired
     private CompanyRepository companyRepository;
 
     @Autowired
     private CompanyFinderFacade companyFinderFacade;
+
+    @AfterEach
+    public void cleanUp() {
+        companyRepository.deleteAll();
+    }
 
     @Test
     void testCompanyFinderFacade() throws CompanyQueryProcessingException {
@@ -51,7 +51,7 @@ class CompanyFinderFacadeTest {
 
     @Test
     void shouldThrowExceptionWhenDatabaseIsEmpty() {
-        // given when
+        // given, when
         CompanyQueryProcessingException exception = assertThrows(
                 CompanyQueryProcessingException.class,
                 () -> companyFinderFacade.findCompanyWithGivenNameSnippet("xxx"));
@@ -70,7 +70,6 @@ class CompanyFinderFacadeTest {
         CompanyQueryProcessingException exception = assertThrows(
                 CompanyQueryProcessingException.class,
                 () -> companyFinderFacade.findCompanyWithGivenNameSnippet("xxx"));
-
 
         // then
         assertEquals(CompanyQueryProcessingException.ERR_COMPANY_NOT_FOUND, exception.getMessage());
