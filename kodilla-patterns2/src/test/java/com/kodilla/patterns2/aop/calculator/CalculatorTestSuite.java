@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@SpringBootTest(classes = Calculator.class)
+@SpringBootTest(classes = {Calculator.class, Watcher.class})
 class CalculatorTestSuite {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CalculatorTestSuite.class);
@@ -65,7 +65,6 @@ class CalculatorTestSuite {
         BigDecimal result = calculator.factorial(new BigDecimal(1000));
         //Then
         LOGGER.info("Testing factorial method");
-//        System.out.println(result);
         assertTrue(BigDecimal.ONE.compareTo(result) < 0);
     }
 

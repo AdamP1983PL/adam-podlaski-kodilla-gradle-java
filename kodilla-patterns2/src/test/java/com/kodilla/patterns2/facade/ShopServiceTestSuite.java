@@ -1,16 +1,14 @@
 package com.kodilla.patterns2.facade;
 
-import com.kodilla.patterns2.facade.api.ItemDto;
-import com.kodilla.patterns2.facade.api.OrderDto;
-import com.kodilla.patterns2.facade.api.OrderFacade;
-import com.kodilla.patterns2.facade.api.OrderProcessingException;
+import com.kodilla.patterns2.facade.api.*;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.math.BigDecimal;
 
-@SpringBootTest(classes = {ShopService.class, Authenticator.class, OrderFacade.class, ProductService.class})
+@SpringBootTest(classes = {ShopService.class, Authenticator.class,
+        OrderFacade.class, ProductService.class, FacadeWatcher.class})
 class ShopServiceTestSuite {
 
     @Autowired

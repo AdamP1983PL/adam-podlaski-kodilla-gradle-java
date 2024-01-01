@@ -1,5 +1,7 @@
 package com.kodilla.patterns2.facade.api;
 
+import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.slf4j.Logger;
@@ -11,10 +13,29 @@ import org.springframework.stereotype.Component;
 public class FacadeWatcher {
     private static final Logger LOGGER = LoggerFactory.getLogger(FacadeWatcher.class);
 
+
     @Before("execution(* com.kodilla.patterns2.facade.api.OrderFacade.processOrder(..)) " +
-            "&& args(orderDto, userId) && target(object)")
-    public void logProcessOrderEvent(OrderDto orderDto, Long userId,  Object object) {
-        LOGGER.info("\n====>>>> Executing the processOrder() method from " + object.getClass().getSimpleName());
+            " && args(orderDto, userId) && target(object)")
+    public void logProcessOrderEvent(OrderDto orderDto, Long userId, Object object) {
+        LOGGER.info("\n\n====>>>> Executing the processOrder() method from " + object.getClass().getSimpleName() +
+                ", Args: class: " + orderDto.getClass().getSimpleName() + ", userId: " + userId + "<<<<====\n");
+    }
+
+    @Around("execution(* com.kodilla.patterns2.facade.api.OrderFacade.processOrder(..))")
+    public Object measureTime(final ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
+        Object result;
+        try {
+            long begin = System.currentTimeMillis();
+            result = proceedingJoinPoint.proceed();
+            long end = System.currentTimeMillis();
+            LOGGER.info("\n\n====>>>>Time consumed " + (end - begin) + " [ms]<<<<====\n");
+        } catch (Throwable throwable) {
+            LOGGER.error(throwable.getMessage());
+            throw throwable;
+        }
+        return result;
     }
 
 }
+
+//    public void processOrder(final OrderDto order, final Long userId) throws OrderProcessingException{}
