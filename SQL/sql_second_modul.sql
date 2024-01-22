@@ -653,16 +653,174 @@ SELECT * FROM BOOKS;
 SELECT * FROM BESTSELLERS_COUNT;
 SELECT * FROM STATS;
 
+# 30.6. Indeksy i plany zapytań-----------------------------------------------------------------------------------
+
+CREATE TABLE PHONES (
+    PHONE_ID INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    PHONENUM INT(9),
+    FIRSTNAME VARCHAR(50),
+    LASTNAME VARCHAR(50)
+);
+
+SELECT * FROM PHONES;
+
+DELIMITER $$
+
+CREATE PROCEDURE FillTestData()
+BEGIN
+    DECLARE K INT DEFAULT 0;
+    WHILE (K < 100000) DO
+            INSERT INTO PHONES (PHONENUM, FIRSTNAME, LASTNAME)
+            VALUES(ROUND(RAND()*1000000000), CONCAT('Firstname number ', K), CONCAT('Lastname number ', K));
+            IF (MOD(K, 5000) = 0) THEN
+                COMMIT;
+            END IF;
+            SET K = K + 1;
+        END WHILE;
+    COMMIT;
+END $$
+
+DELIMITER ;
+
+CALL FillTestData();
+
+SELECT * FROM PHONES;
+
+CREATE TABLE PHONESTATS (
+                            ID INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+                            RANGE_FROM INT(11),
+                            RANGE_TO INT(11),
+                            QUANTITY INT(11)
+);
+
+select * from PHONESTATS;
+
+DELIMITER $$
+
+CREATE PROCEDURE CalcPhoneStats()
+BEGIN
+    DECLARE K INT(11) DEFAULT 0;
+    DECLARE QTY INT(11);
+    DELETE FROM PHONESTATS WHERE ID > 0;                                    -- [1]
+    COMMIT;
+    WHILE (K < 100000000) DO
+            SELECT COUNT(*)                                         -- [2]
+            FROM PHONES                                         -- [3]
+            WHERE PHONENUM BETWEEN K-99999 AND K                    -- [4]
+            INTO QTY;                                           -- [5]
+            INSERT INTO PHONESTATS (RANGE_FROM, RANGE_TO, QUANTITY) -- [6]
+            VALUES (K-99999, K, QTY);                           -- [7]
+            COMMIT;
+            SET K = K + 100000;                                     -- [8]
+        END WHILE;
+END $$
+
+DELIMITER ;
+
+CALL CalcPhoneStats();
+
+select * from PHONESTATS;
+
+EXPLAIN SELECT COUNT(*)
+FROM PHONES
+WHERE PHONENUM BETWEEN 1 AND 100000;
+
+DROP INDEX PHONENO ON PHONES;
+
+CREATE INDEX PHONENO ON PHONES (PHONENUM);
+
+CALL CalcPhoneStats();
+
+# Zadanie: indeksy dla biblioteki ------------------------------------------------------------------------------------
+
+SELECT * FROM BOOKS;
+SELECT * FROM READERS;
+
+CREATE INDEX BOOKSNO ON BOOKS (TITLE);
+CREATE INDEX FIRSTNAMENO ON READERS (FIRSTNAME);
+CREATE INDEX LASTNAMENO ON READERS (LASTNAME);
 
 
+# Zadanie: indeksy dla biblioteki ------------------------------------------------------------------------------------
 
+SELECT * FROM BOOKS;
 
+DELIMITER $$
 
+CREATE PROCEDURE FillBooksTestData()
+BEGIN
+    DECLARE K INT DEFAULT 1000001;
+    WHILE (K < 1000000) DO
+            INSERT INTO BOOKS (TITLE, PUBYEAR)
+            VALUES(CONCAT('BOOK TITLE_', K), 2024);
+            IF (MOD(K, 5000) = 0) THEN
+                COMMIT;
+            END IF;
+            SET K = K + 1;
+        END WHILE;
+    COMMIT;
+END $$
 
+DELIMITER ;
 
+CALL FillBooksTestData();
 
+CREATE INDEX BOOKSNO ON BOOKS (TITLE);
 
+DROP INDEX BOOKSNO ON BOOKS;
 
+SELECT * FROM BOOKS;
+
+SELECT BOOK_ID, PUBYEAR
+FROM BOOKS
+WHERE TITLE = 'BOOK TITLE_991487';
+
+# Readers: -------------------------------------------------------
+
+SELECT *
+FROM READERS;
+
+DELIMITER $$
+
+CREATE PROCEDURE FillReadersData()
+BEGIN
+    DECLARE K INT DEFAULT 0;
+    WHILE (K < 1000000)
+        DO
+            INSERT INTO READERS (FIRSTNAME, LASTNAME, PESELID, VIP_LEVEL)
+            VALUES (CASE
+                        WHEN (MOD(K, 3) = 0) THEN 'Curtis'
+                        WHEN (MOD(K, 5) = 0) THEN 'John'
+                        WHEN (MOD(K, 7) = 0) THEN 'Marissa'
+                        ELSE 'Muriel'
+                        END,
+                    CASE
+                        WHEN (MOD(K, 3) = 0) THEN 'Wilson'
+                        WHEN (MOD(K, 5) = 0) THEN 'Cain'
+                        WHEN (MOD(K, 7) = 0) THEN 'Booker'
+                        ELSE 'Fulton'
+                        END,
+                    ROUND(RAND() * 1000000000),
+                    'Gold customer');
+            IF (MOD(K, 5000) = 0) THEN
+                COMMIT;
+            END IF;
+            SET K = K + 1;
+        END WHILE;
+    COMMIT;
+END $$
+
+DELIMITER ;
+
+CALL FillReadersData();
+
+DROP INDEX FIRSTNAMENO ON READERS;
+
+CREATE INDEX FIRSTNAMENO ON READERS (FIRSTNAME);
+CREATE INDEX LASTNAMENO ON READERS (LASTNAME);
+
+SELECT FIRSTNAME, LASTNAME, PESELID, VIP_LEVEL FROM readers
+WHERE FIRSTNAME = 'John';
 
 
 
